@@ -1,12 +1,81 @@
-BoxLayoutExample:
+StackLayoutExample:
 
-<BoxLayoutExample>:
-    orientation: "vertical"
+<StackLayoutExample>:
+    #left-right, top-botton, written as: lr-tb, rl-tb
+    orientation: "rl-bt"
+    padding: ("20dp", "20dp", "20dp", "20dp")
+    spacing: "20dp", "20dp"
+
+# GridLayoutExample:
+
+<GridLayoutExample@GridLayout>:
+    # specify rows and cols
+    #cols: 3
+    rows: 2
     Button:
         text: "A"
+        size_hint: None, 1
+        width: "60dp"
+    #Button:
+    #    text: "B"
+    BoxLayoutExample:
     Button:
-        text: "B"
+        text: "C"
     Button:
+        text: "D"
+        size_hint: None, 1
+        width: "60dp"
+    Button:
+        text: "E"
+    Button:
+        text: "F"
+
+# AnchorLayoutExample:
+
+# THe anchorlayout sets by default the button in the center of the screen
+<AnchorLayoutExample>:
+    # right, left, center
+    anchor_x: "center"
+    # botton, top, center
+    anchor_y: "top"
+    BoxLayout:
+        size_hint: .2, .2
+        Button:
+            text: "A"
+        #    size_hint: .1, .1
+        Button:
+            text: "B"
+
+# BoxLayoutExample:
+
+<BoxLayoutExample>:
+    orientation: "horizontal"
+    Button:
+        text: "A"
+        # size: "40dp", "40dp" # does not work having a layout
+        size_hint: .8, .5
+        # To enable manual control of button size, size_hint must be set
+        # to None, and then the size parameter will be taken into account,
+        # But size will not adapt to resizing window
+
+        # To manually adjust the position, it would be necessary to use the pos_hint
+        # with the following specifications
+        # x, center_x, right, where only x or right can be specified, right is the right part of the button
+        # y, center_y, top, where only y or top can be specified
+        pos_hint: {"center_y": .5}
+
+    BoxLayout:
+        orientation: "vertical"
+        spacing: "10dp"
+        Button:
+            text: "B1"
+        Button:
+            text: "B2"
+        Button:
+            text: "B3"
+        Button:
+            text: "B4"
+    Label:
         text: "C"
 
 <MainWidget>:
