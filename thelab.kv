@@ -1,8 +1,56 @@
-StackLayoutExample:
+WidgetsExample:
+
+<WidgetsExample>:
+    cols: 3
+    ToggleButton:
+        text: "OFF"
+        on_state: root.on_toggle_button_state(self)
+        size_hint: None, 1
+        width: "100dp"
+    Button:
+        text: "Click here"
+        on_press: root.on_button_click()
+        # root refers to WidgetsExample, self would refer to the button
+        disabled: not root.count_enabled
+    Label:
+        text: root.my_text
+        font_name: "fonts/Lcd.ttf"
+        font_size: "20dp"
+        color: 1, 0.5, 1
+    Switch:
+        on_active: root.on_switch_active(self)
+        size_hint: None, 1
+        width: "100dp"
+    Slider:
+        min: 0
+        max: 100
+        # set default initial position:
+        value: 50
+        on_value: root.on_slider_value(self)
+        orientation: "vertical"
+
+#PageLayoutExample:
+
+<PageLayoutExample@PageLayout>:
+    MainWidget:
+    BoxLayoutExample:
+    AnchorLayout:
+    GridLayoutExample:
+
+# ScrollViewExample:
+
+<ScrollViewExample@ScrollView>:
+    StackLayoutExample:
+        # This will scroll vertically, to scroll horizontally,
+        # use size_hint: None, 1 and width:self.minimum_width
+        size_hint: 1, None
+        height: self.minimum_height
+
+# StackLayoutExample:
 
 <StackLayoutExample>:
     #left-right, top-botton, written as: lr-tb, rl-tb
-    orientation: "rl-bt"
+    orientation: "lr-tb"
     padding: ("20dp", "20dp", "20dp", "20dp")
     spacing: "20dp", "20dp"
 
