@@ -1,4 +1,44 @@
-WidgetsExample:
+CanvasExample2:
+
+<CanvasExample2>:
+    canvas:
+        Line:
+            points: (self.width/2, 0, self.width/2, self.height)
+        Line:
+            points: (0, self.height/2, self.width, self.height/2)
+
+# CanvasExample1:
+
+#:set s dp(150)
+
+<CanvasExample1>:
+    canvas:
+        Rectangle:
+            pos: self.center_x - s/2, self.center_y - s/2
+            size: s, s
+        Ellipse:
+            pos: 100, 200
+            size: s, s/2
+        Line:
+            points: (0, 0, self.width/4, 100, self.width/2, 0, self.width*3/4, 100, self.width, 0)
+            width: 2
+
+
+# ImagesExample:
+
+<ImagesExample@GridLayout>:
+    cols: 3
+    Image:
+        source: "images/cake.jpg"
+    Image:
+        source: "images/cake.jpg"
+        allow_stretch: True
+    Image:
+        source: "images/cake.jpg"
+        allow_stretch: True
+        keep_ratio: False
+
+# WidgetsExample:
 
 <WidgetsExample>:
     cols: 3
@@ -18,16 +58,41 @@ WidgetsExample:
         font_size: "20dp"
         color: 1, 0.5, 1
     Switch:
+        id: my_switch
         on_active: root.on_switch_active(self)
         size_hint: None, 1
         width: "100dp"
+        active: True
     Slider:
+        id: my_slider
         min: 0
         max: 100
         # set default initial position:
         value: 50
-        on_value: root.on_slider_value(self)
+        # on_value: root.on_slider_value(self)
         orientation: "vertical"
+        disabled: not my_switch.active
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            # text: root.slider_value_txt
+            text: str(int(my_slider.value))
+            font_name: "fonts/Lcd.ttf"
+            font_size: "20dp"
+            color: 1, 0.5, 1
+        ProgressBar:
+            max: 100
+            value: my_slider.value
+    TextInput:
+        id: my_text_input
+        size_hint: None, 1
+        width: "100dp"
+        # default text:
+        text: "foo"
+        multiline: False
+        on_text_validate: root.on_text_validate(self)
+    Label:
+        text: root.text_input_str
 
 #PageLayoutExample:
 

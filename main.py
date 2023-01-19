@@ -13,6 +13,9 @@ class WidgetsExample(GridLayout):
     counter = 0
     count_enabled = BooleanProperty(False)
     my_text = StringProperty("Hello!")
+    # Slider value can be taken care of by id of slide in kv file
+    # slider_value_txt = StringProperty("50")
+    text_input_str = StringProperty("foo")
     def on_button_click(self):
         print("Button clicked")
         if self.count_enabled:
@@ -31,8 +34,12 @@ class WidgetsExample(GridLayout):
     def on_switch_active(self, widget):
         print("Switch: " + str(widget.active))
 
-    def on_slider_value(self, widget):
-        print("Slider: " + str(widget.value))
+    # def on_slider_value(self, widget):
+    #     print("Slider: " + str(widget.value))
+    #     self.slider_value_txt = str(int(widget.value))
+    def on_text_validate(self, widget):
+        self.text_input_str = widget.text
+
 class StackLayoutExample(StackLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -69,5 +76,10 @@ class MainWidget(Widget):
 class TheLabApp(App):
     pass
 
+class CanvasExample1(Widget):
+    pass
+
+class CanvasExample2(Widget):
+    pass
 
 TheLabApp().run()
