@@ -97,6 +97,7 @@ class MainWidget(RelativeLayout):
         self.sound_music1 = SoundLoader.load("audio/music1.wav")
         self.sound_restart = SoundLoader.load("audio/restart.wav")
 
+        self.sound_music1.loop = True
         self.sound_music1.volume = 1
         self.sound_galaxy.volume = .25
         self.sound_gameover_voice.volume = .25
@@ -229,9 +230,9 @@ class MainWidget(RelativeLayout):
         return x, y
 
     def update_tiles(self):
-        for i in range(0, self.NB_TILES):
-            tile = self.tiles[i]
-            tile_coordinates = self.tiles_coordinates[i]
+        for tile, tile_coordinates in zip(self.tiles, self.tiles_coordinates):
+            # tile = self.tiles[i]
+            # tile_coordinates = self.tiles_coordinates[i]
             xmin, ymin = self.get_tile_coordinates(tile_coordinates[0], tile_coordinates[1])
             xmax, ymax = self.get_tile_coordinates(tile_coordinates[0] + 1, tile_coordinates[1] + 1)
             x1, y1 = self.transform(xmin, ymin)
